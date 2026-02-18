@@ -147,18 +147,6 @@
             font-weight: 600;
         }
 
-        .badge {
-            display: inline-block;
-            padding: 4px 8px;
-            background-color: #E8F5E9;
-            color: #2E7D32;
-            border-radius: 4px;
-            font-size: 0.8em;
-            font-weight: 700;
-            margin-left: 8px;
-            vertical-align: middle;
-        }
-
         .footer {
             text-align: center;
             margin-top: 60px;
@@ -194,6 +182,59 @@
                 font-size: 1.3rem;
             }
         }
+
+        /* TABS STYLES */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: transparent;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover {
+            color: var(--primary-color);
+            background-color: rgba(103, 58, 183, 0.05);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .tab-button.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -208,77 +249,149 @@
 
     <div class="container">
 
-        <div style="text-align: center;">
-            <div class="last-updated">Última actualización: 28 de Enero de 2026</div>
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab('policy', this)">Política de Privacidad</button>
+            <button class="tab-button" onclick="openTab('delete', this)">Eliminar Cuenta</button>
         </div>
 
-        <div class="card">
-            <h2>Política de Privacidad</h2>
+        <!-- TAB 1: POLICY -->
+        <div id="policy" class="tab-content active">
+            <div style="text-align: center;">
+                <div class="last-updated">Última actualización: 17 de Febrero de 2026</div>
+            </div>
 
-            <h3>1. Introducción</h3>
-            <p><strong>Karter Wallet</strong> ("la Aplicación") respeta su privacidad. Esta Política de Privacidad
-                explica cómo recopilamos, usamos y protegemos sus datos. La Aplicación es gratuita y es mantenida
-                gracias a la publicidad.</p>
+            <div class="card">
+                <h2>Política de Privacidad</h2>
 
-            <h3>2. Recopilación y Uso de Datos</h3>
-            <p>La Aplicación utiliza servicios de terceros que pueden recopilar información utilizada para
-                identificarlo.</p>
+                <h3>1. Introducción</h3>
+                <p><strong>Karter Wallet</strong> ("la Aplicación") respeta su privacidad. Esta Política de Privacidad
+                    explica cómo recopilamos, usamos y protegemos sus datos. La Aplicación es gratuita y es mantenida
+                    gracias a la publicidad.</p>
 
-            <p><strong>Datos Financieros</strong><br>
-                Todos los datos financieros (ingresos, gastos, presupuestos) se almacenan de forma segura en
-                <strong>Google Cloud Firestore</strong> bajo su propia cuenta de usuario autenticada. No vendemos ni
-                compartimos sus datos financieros con terceros.</p>
+                <h3>2. Recopilación y Uso de Datos</h3>
+                <p>La Aplicación utiliza servicios de terceros que pueden recopilar información utilizada para
+                    identificarlo.</p>
 
-            <p><strong>Permisos Solicitados</strong></p>
-            <ul>
-                <li><strong>Micrófono (RECORD_AUDIO):</strong> Se utiliza EXCLUSIVAMENTE cuando usted toca el botón de
-                    micrófono para transcribir sus gastos mediante voz. El audio se procesa para convertirlo a texto y
-                    no se almacena permanentemente.</li>
-                <li><strong>Biometría (FaceID / TouchID):</strong> Se utiliza localmente en su dispositivo para asegurar
-                    el acceso a la aplicación. No recopilamos sus datos biométricos.</li>
-                <li><strong>Identificadores de Dispositivo:</strong> Utilizamos identificadores para mostrar publicidad
-                    personalizada y análisis de estabilidad.</li>
-            </ul>
-
-            <h3>3. Servicios de Terceros</h3>
-            <p>La Aplicación utiliza los siguientes servicios de terceros, los cuales tienen sus propias Políticas de
-                Privacidad:</p>
-            <ul>
-                <li><strong>Google AdMob:</strong> Para mostrar anuncios. AdMob puede usar identificadores de publicidad
-                    para mostrar anuncios relevantes. <a href="https://policies.google.com/privacy"
-                        target="_blank">Política de Privacidad de Google</a>.</li>
-                <li><strong>Firebase Analytics & Crashlytics:</strong> Para recopilar datos anónimos sobre bloqueos y
-                    uso de la aplicación con el fin de mejorar la estabilidad.</li>
-                <li><strong>Google Gemini AI:</strong> Para procesar consultas del Asesor Financiero. El texto de sus
-                    consultas se envía a Google para su procesamiento, pero no se utiliza para entrenar modelos públicos
-                    sin su consentimiento explícito.</li>
-            </ul>
-
-            <h3>4. Seguridad de los Datos (Data Safety)</h3>
-            <p>Valoramos su confianza al proporcionarnos sus datos personales y nos esforzamos por utilizar medios
-                comercialmente aceptables para protegerlos. Sin embargo, recuerde que ningún método de transmisión a
-                través de Internet o método de almacenamiento electrónico es 100% seguro y confiable.</p>
-
-            <h3>5. Eliminación de Datos</h3>
-            <p>Usted tiene derecho a solicitar la eliminación de sus datos. Puede hacerlo directamente desde la
-                aplicación en <strong>Ajustes > Cuenta > Eliminar Cuenta</strong>, lo cual borrará permanentemente sus
-                registros de nuestros servidores.</p>
-
-            <h3>6. Privacidad de los Niños</h3>
-            <p>Estos Servicios no se dirigen a nadie menor de 13 años. No recopilamos a sabiendas información de
-                identificación personal de niños menores de 13 años.</p>
-
-            <h3>7. Cambios a esta Política</h3>
-            <p>Podemos actualizar nuestra Política de Privacidad de vez en cuando. Se le aconseja revisar esta página
-                periódicamente para ver si hay cambios.</p>
-
-            <div class="contact-box">
-                <h3>8. Contacto</h3>
-                <p>Si tiene preguntas sobre esta Política de Privacidad o el tratamiento de sus datos, contáctenos en:
+                <p><strong>Datos Financieros</strong><br>
+                    Todos los datos financieros (ingresos, gastos, presupuestos) se almacenan de forma segura en
+                    <strong>Google Cloud Firestore</strong> bajo su propia cuenta de usuario autenticada. No vendemos ni
+                    compartimos sus datos financieros con terceros.
                 </p>
-                <a href="mailto:nartex404@gmail.com">nartex404@gmail.com</a>
+
+                <p><strong>Permisos Solicitados</strong></p>
+                <ul>
+                    <li><strong>Micrófono (RECORD_AUDIO):</strong> Se utiliza EXCLUSIVAMENTE cuando usted toca el botón
+                        de
+                        micrófono para transcribir sus gastos mediante voz. El audio se procesa para convertirlo a texto
+                        y
+                        no se almacena permanentemente.</li>
+                    <li><strong>Biometría (FaceID / TouchID):</strong> Se utiliza localmente en su dispositivo para
+                        asegurar
+                        el acceso a la aplicación. No recopilamos sus datos biométricos.</li>
+                    <li><strong>Identificadores de Dispositivo:</strong> Utilizamos identificadores para mostrar
+                        publicidad
+                        personalizada y análisis de estabilidad.</li>
+                </ul>
+
+                <h3>3. Servicios de Terceros</h3>
+                <p>La Aplicación utiliza los siguientes servicios de terceros, los cuales tienen sus propias Políticas
+                    de
+                    Privacidad:</p>
+                <ul>
+                    <li><strong>Google AdMob:</strong> Para mostrar anuncios. AdMob puede usar identificadores de
+                        publicidad
+                        para mostrar anuncios relevantes. <a href="https://policies.google.com/privacy"
+                            target="_blank">Política de Privacidad de Google</a>.</li>
+                    <li><strong>Firebase Analytics & Crashlytics:</strong> Para recopilar datos anónimos sobre bloqueos
+                        y
+                        uso de la aplicación con el fin de mejorar la estabilidad.</li>
+                    <li><strong>Google Gemini AI:</strong> Para procesar consultas del Asesor Financiero. El texto de
+                        sus
+                        consultas se envía a Google para su procesamiento, pero no se utiliza para entrenar modelos
+                        públicos
+                        sin su consentimiento explícito.</li>
+                </ul>
+
+                <h3>4. Seguridad de los Datos (Data Safety)</h3>
+                <p>Valoramos su confianza al proporcionarnos sus datos personales y nos esforzamos por utilizar medios
+                    comercialmente aceptables para protegerlos. Sin embargo, recuerde que ningún método de transmisión a
+                    través de Internet o método de almacenamiento electrónico es 100% seguro y confiable.</p>
+
+                <h3>5. Eliminación de Datos</h3>
+                <p>Usted tiene derecho a solicitar la eliminación de sus datos. Puede hacerlo directamente desde la
+                    aplicación en <strong>Ajustes > Cuenta > Eliminar Cuenta</strong>, lo cual borrará permanentemente
+                    sus
+                    registros de nuestros servidores.</p>
+
+                <h3>6. Privacidad de los Niños</h3>
+                <p>Estos Servicios no se dirigen a nadie menor de 13 años. No recopilamos a sabiendas información de
+                    identificación personal de niños menores de 13 años.</p>
+
+                <h3>7. Cambios a esta Política</h3>
+                <p>Podemos actualizar nuestra Política de Privacidad de vez en cuando. Se le aconseja revisar esta
+                    página
+                    periódicamente para ver si hay cambios.</p>
+
+                <div class="contact-box">
+                    <h3>8. Contacto</h3>
+                    <p>Si tiene preguntas sobre esta Política de Privacidad o el tratamiento de sus datos, contáctenos
+                        en:
+                    </p>
+                    <a href="mailto:nartex404@gmail.com">nartex404@gmail.com</a>
+                </div>
             </div>
         </div>
+
+        <!-- TAB 2: DELETE ACCOUNT -->
+        <div id="delete" class="tab-content">
+            <div class="card">
+                <h2>Solicitud de Eliminación de Datos</h2>
+                <p>En Karter Wallet nos tomamos en serio tu privacidad. Si deseas eliminar tu cuenta y borrar
+                    permanentemente todos tus datos financieros de nuestros servidores, tienes dos opciones:</p>
+
+                <h3>1. Desde la Aplicación (Recomendado)</h3>
+                <p>Es la forma más rápida y automática.</p>
+                <ol>
+                    <li>Abre <strong>Karter Wallet</strong>.</li>
+                    <li>Ve a <strong>Ajustes</strong> (icono de engranaje).</li>
+                    <li>Baja a la sección <strong>Cuenta</strong>.</li>
+                    <li>Toca en <strong style="color: #D32F2F;">Eliminar Cuenta</strong> e ingresa tu confirmación.</li>
+                </ol>
+
+                <h3>2. Solicitud vía Web / Correo</h3>
+                <p>Si no puedes acceder a la aplicación, puedes solicitar la baja manual:</p>
+                <ul>
+                    <li>Envía un correo electrónico a <a
+                            href="mailto:nartex404@gmail.com?subject=Solicitud%20Eliminar%20Cuenta">nartex404@gmail.com</a>.
+                    </li>
+                    <li>Asunto: <strong>"Solicitud Eliminar Cuenta"</strong>.</li>
+                    <li>Cuerpo del mensaje: Indica el <strong>correo electrónico</strong> con el que te registraste.
+                    </li>
+                </ul>
+                <p>Procesaremos tu solicitud y eliminaremos todos tus datos en un plazo máximo de <strong>7 días
+                        hábiles</strong>.</p>
+            </div>
+        </div>
+
+        <script>
+            function openTab(tabId, btnElement) {
+                // 1. Hide all tab contents
+                var contents = document.getElementsByClassName('tab-content');
+                for (var i = 0; i < contents.length; i++) {
+                    contents[i].classList.remove('active');
+                }
+
+                // 2. Deactivate all buttons
+                var buttons = document.getElementsByClassName('tab-button');
+                for (var i = 0; i < buttons.length; i++) {
+                    buttons[i].classList.remove('active');
+                }
+
+                // 3. Show specific tab and activate button
+                document.getElementById(tabId).classList.add('active');
+                btnElement.classList.add('active');
+            }
+        </script>
 
         <div class="footer">
             &copy; 2026 Karter Wallet. Desarrollado con ❤️ por Nartex.
